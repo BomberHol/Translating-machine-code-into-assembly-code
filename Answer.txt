@@ -1,0 +1,173 @@
+
+0x0: 0c943400 *jmp {'k': '0x68'}
+0x4: 0c945100 *jmp {'k': '0xa2'}
+0x8: 0c945100 *jmp {'k': '0xa2'}
+0xc: 0c945100 *jmp {'k': '0xa2'}
+0x10: 0c945100 *jmp {'k': '0xa2'}
+0x14: 0c945100 *jmp {'k': '0xa2'}
+0x18: 0c945100 *jmp {'k': '0xa2'}
+0x1c: 0c945100 *jmp {'k': '0xa2'}
+0x20: 0c945100 *jmp {'k': '0xa2'}
+0x24: 0c945100 *jmp {'k': '0xa2'}
+0x28: 0c945100 *jmp {'k': '0xa2'}
+0x2c: 0c945300 *jmp {'k': '0xa6'}
+0x30: 0c945100 *jmp {'k': '0xa2'}
+0x34: 0c945100 *jmp {'k': '0xa2'}
+0x38: 0c945100 *jmp {'k': '0xa2'}
+0x3c: 0c945100 *jmp {'k': '0xa2'}
+0x40: 0c945100 *jmp {'k': '0xa2'}
+0x44: 0c945100 *jmp {'k': '0xa2'}
+0x48: 0c945100 *jmp {'k': '0xa2'}
+0x4c: 0c945100 *jmp {'k': '0xa2'}
+0x50: 0c945100 *jmp {'k': '0xa2'}
+0x54: 0c945100 *jmp {'k': '0xa2'}
+0x58: 0c945100 *jmp {'k': '0xa2'}
+0x5c: 0c945100 *jmp {'k': '0xa2'}
+0x60: 0c945100 *jmp {'k': '0xa2'}
+0x64: 0c945100 *jmp {'k': '0xa2'}
+0x68: 1124            eor, {'d': 'R1', 'r': 'R1'}            clr, {'d': 'R17'}
+0x6a: 1fbe out {'r': 'R1', 'P': '0x3f'}
+0x6c: cfef            ser, {'d': 'R12'}            ldi, {'d': 'R28', 'K': '0xff'}
+0x6e: d8e0 ldi {'d': 'R29', 'K': '0x8'}
+0x70: debf out {'r': 'R29', 'P': '0x3e'}
+0x72: cdbf out {'r': 'R28', 'P': '0x3d'}
+0x74: 11e0 ldi {'d': 'R17', 'K': '0x1'}
+0x76: a0e0 ldi {'d': 'R26', 'K': '0x0'}
+0x78: b1e0 ldi {'d': 'R27', 'K': '0x1'}
+0x7a: eee7 ldi {'d': 'R30', 'K': '0x7e'}
+0x7c: f1e0 ldi {'d': 'R31', 'K': '0x1'}
+0x7e: 02c0 rjmp {'k': '0x2'}
+0x80: 0590 lpm {'d': 'R0'}
+0x82: 0d92 st {'r': 'R0'}
+0x84: a032 cpi {'d': 'R10', 'K': '0x20'}
+0x86: 7b1 cpc {'d': 'R27', 'r': 'R17'}
+0x86: d9f7            brbc, {'k': '0x7b', 's': 1}            brne, {'k': '0x7b'}
+0x88: 21e0 ldi {'d': 'R18', 'K': '0x1'}
+0x8a: a0e2 ldi {'d': 'R26', 'K': '0x20'}
+0x8c: b1e0 ldi {'d': 'R27', 'K': '0x1'}
+0x8e: 01c0 rjmp {'k': '0x1'}
+0x90: 1d92 st {'r': 'R1'}
+0x92: a132 cpi {'d': 'R10', 'K': '0x21'}
+0x94: 7b2 cpc {'d': 'R27', 'r': 'R18'}
+0x94: e1f7            brbc, {'k': '0x7c', 's': 1}            brne, {'k': '0x7c'}
+0x96: 0e949600 *call {'k': '0x12c'}
+0x9a: 0c94bd00 *jmp {'k': '0x17a'}
+0x9e: 0c940000 *jmp {'k': '0x0'}
+0xa2: 1f92 push {'r': 'R1'}
+0xa4: 0f92 push {'r': 'R0'}
+0xa6: 0fb6 in {'d': 'R0', 'P': '0x3f'}
+0xa8: 0f92 push {'r': 'R0'}
+0xaa: 1124            eor, {'d': 'R1', 'r': 'R1'}            clr, {'d': 'R17'}
+0xac: 8f93 push {'r': 'R24'}
+0xae: 9f93 push {'r': 'R25'}
+0xb0: ef93 push {'r': 'R30'}
+0xb2: ff93 push {'r': 'R31'}
+0xb4: 81e0 ldi {'d': 'R24', 'K': '0x1'}
+0xb6: 8093
+0xb8: 120 movw {'d': 'R2', 'r': 'R0'}
+0xb8: e8e8 ldi {'d': 'R30', 'K': '0x88'}
+0xba: f0e0 ldi {'d': 'R31', 'K': '0x0'}
+0xbc: 8081            ld, {'d': 'R24'}            ldd, {'d': 'R24', 'q': '0x0'}
+0xbe: 9181 ldd {'d': 'R25', 'q': '0x1'}
+0xc0: 815b subi {'d': 'R24', 'K': '0xb1'}
+0xc2: 9d4e sbci {'d': 'R25', 'K': '0xed'}
+0xc4: 9183 std {'r': 'R25', 'q': '0x1'}
+0xc6: 8083            st, {'r': 'R24'}            std, {'r': 'R24', 'q': '0x0'}
+0xc8: ff91 pop {'d': 'R31'}
+0xca: ef91 pop {'d': 'R30'}
+0xcc: 9f91 pop {'d': 'R25'}
+0xce: 8f91 pop {'d': 'R24'}
+0xd0: 0f90 pop {'d': 'R0'}
+0xd2: 0fbe out {'r': 'R0', 'P': '0x3f'}
+0xd4: 0f90 pop {'d': 'R0'}
+0xd6: 1f90 pop {'d': 'R1'}
+0xd8: 1895 reti {}
+0xda: 85e0 ldi {'d': 'R24', 'K': '0x5'}
+0xdc: 8093
+0xde: 81
+0xde: 82e0 ldi {'d': 'R24', 'K': '0x2'}
+0xe0: 8093
+0xe2: 6f
+0xe2: 8fe4 ldi {'d': 'R24', 'K': '0x4f'}
+0xe4: 92e1 ldi {'d': 'R25', 'K': '0x12'}
+0xe6: 9093
+0xe8: 89
+0xe8: 8093
+0xea: 88
+0xea: 0895            icall, {}            ret, {}
+0xec: 8ebd out {'r': 'R24', 'P': '0x2e'}
+0xee: 0db4 in {'d': 'R0', 'P': '0x2d'}
+0xf0: 07fe sbrs {'r': 'R0', 'b': 7}
+0xf2: fdcf rjmp {'k': '0xffd'}
+0xf4: 0895            icall, {}            ret, {}
+0xf6: cf93 push {'r': 'R28'}
+0xf8: df93 push {'r': 'R29'}
+0xfa: 00d0 rcall {'k': '0x0'}
+0xfc: cdb7 in {'d': 'R28', 'P': '0x3d'}
+0xfe: deb7 in {'d': 'R29', 'P': '0x3e'}
+0x100: 9a83 std {'r': 'R25', 'q': '0x2'}
+0x102: 8983 std {'r': 'R24', 'q': '0x1'}
+0x104: 8a81 ldd {'d': 'R24', 'q': '0x2'}
+0x106: 0e947d00 *call {'k': '0xfa'}
+0x10a: 8981 ldd {'d': 'R24', 'q': '0x1'}
+0x10c: 0e947d00 *call {'k': '0xfa'}
+0x110: 299a sbi {'P': '0x5', 'b': 1}
+0x112: 2998 cbi {'P': '0x5', 'b': 1}
+0x114: 0f90 pop {'d': 'R0'}
+0x116: 0f90 pop {'d': 'R0'}
+0x118: df91 pop {'d': 'R29'}
+0x11a: cf91 pop {'d': 'R28'}
+0x11c: 0895            icall, {}            ret, {}
+0x11e: 8fef            ser, {'d': 'R8'}            ldi, {'d': 'R24', 'K': '0xff'}
+0x120: 84b9 out {'r': 'R24', 'P': '0x4'}
+0x122: 519a sbi {'P': '0xa', 'b': 1}
+0x124: 0e947000 *call {'k': '0xe0'}
+0x128: 81e5 ldi {'d': 'R24', 'K': '0x51'}
+0x12a: 8cbd out {'r': 'R24', 'P': '0x2c'}
+0x12c: 7894e0e0
+0x130: c0e0 ldi {'d': 'R28', 'K': '0x0'}
+0x132: 11e0 ldi {'d': 'R17', 'K': '0x1'}
+0x134: 01c0 rjmp {'k': '0x1'}
+0x136: ed2f mov {'d': 'R30', 'r': 'R29'}
+0x138: 8091
+0x13a: 120 movw {'d': 'R2', 'r': 'R0'}
+0x13a: 8823            and, {'d': 'R24', 'r': 'R24'}            tst, {'d': 'R904'}
+0x13c: e1f3            brbs, {'k': '0x7c', 's': 1}            breq, {'k': '0x7c'}
+0x13e: 1092
+0x140: 120 movw {'d': 'R2', 'r': 'R0'}
+0x140: e031 cpi {'d': 'R14', 'K': '0x10'}
+0x142: 09f4            brbc, {'k': '0x1', 's': 1}            brne, {'k': '0x1'}
+0x144: e0e0 ldi {'d': 'R30', 'K': '0x0'}
+0x146: d1e0 ldi {'d': 'R29', 'K': '0x1'}
+0x148: fde            add, {'d': 'R29', 'r': 'R30'}            lsl, {'d': 'R990'}
+0x148: f0e0 ldi {'d': 'R31', 'K': '0x0'}
+0x14a: fee            add, {'d': 'R30', 'r': 'R30'}            lsl, {'d': 'R1006'}
+0x14a: ff1f            adc, {'d': 'R31', 'r': 'R31'}            rol, {'d': 'R1023'}
+0x14c: e050 subi {'d': 'R30', 'K': '0x0'}
+0x14e: ff4f sbci {'d': 'R31', 'K': '0xff'}
+0x150: 8081            ld, {'d': 'R24'}            ldd, {'d': 'R24', 'q': '0x0'}
+0x152: 9181 ldd {'d': 'R25', 'q': '0x1'}
+0x154: 0e948200 *call {'k': '0x104'}
+0x158: c127            eor, {'d': 'R28', 'r': 'R17'}            clr, {'d': 'R961'}
+0x15a: 11f0            brbs, {'k': '0x2', 's': 1}            breq, {'k': '0x2'}
+0x15c: 599a sbi {'P': '0xb', 'b': 1}
+0x15e: e7cf rjmp {'k': '0xfe7'}
+0x160: 5998 cbi {'P': '0xb', 'b': 1}
+0x162: e5cf rjmp {'k': '0xfe5'}
+0x164: f894ffcf
+0x168: 1
+0x168: 2
+0x168: 4
+0x168: 8
+0x168: 10
+0x168: 20
+0x168: 40
+0x168: 80
+0x168: 101 movw {'d': 'R0', 'r': 'R1'}
+0x168: 202
+0x168: 404 cpc {'d': 'R0', 'r': 'R4'}
+0x168: 808 sbc {'d': 'R0', 'r': 'R8'}
+0x168: 1010 cpse {'d': 'R1', 'r': 'R0'}
+0x16a: 2020            and, {'d': 'R2', 'r': 'R0'}            tst, {'d': 'R32'}
+0x16c: 4040 sbci {'d': 'R20', 'K': '0x0'}
+0x16e: 8080            ld, {'d': 'R8'}            ldd, {'d': 'R8', 'q': '0x0'}
