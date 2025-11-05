@@ -20,8 +20,8 @@ def DefiningDictionaryMaskOperands(st):
         operands['q'] = ''
     return operands
 
-
-
+const = ['9408', '9488', '9418', '9498', '9428', '94A8', '9438', '94B8',
+          '9448', '94C8', '9458', '94D8', '9468', '94E8', '9478', '94F8']
 #определение и обаботка таблицы
 tablFile = pd.read_excel('ASM.xlsx', usecols=['Команда', 'Код операции'])
 tabl = []
@@ -35,6 +35,7 @@ for x in range(len(tablFile)):
             command += i
         else:
             break
+    command = command.replace('*', '')
     tabl.append([mask, command])
 
 
@@ -44,7 +45,6 @@ hexCommands = []
 for x in hexFile:
     strock = x.replace('\n', '').replace(':', '')
     hexCommands.append(strock[8:-2:])
-
 
 
 #разделяю команды по байтам или по два байта
@@ -58,10 +58,9 @@ for st in hexCommands:
         elif len(s)%8 == 0:
             s = s[0:4] + s[6:8] + s[4:6]
 
-        if (len(s) == 4 and ('94' not in s[0:2]) and ('94' not in s[2:4])) or len(s) == 8:
+        if (len(s) == 4 and ('94' not in s[0:2]) and ('94' not in s[2:4])) or len(s) == 8 or s in const:
             hexByteCommands.append(s)
             s = ''
-
 
 
 #перевод Hex в Bin
@@ -74,7 +73,6 @@ for comHex in hexByteCommands:
     elif len(comHex) == 8 and len(comBin) < 32:
         comBin = (32 - len(comBin)) * '0' + comBin
     binByteCommands.append(comBin)
-
 
 
 #нахожу для каждого байта команду и маску
@@ -98,7 +96,6 @@ for binCommand in binByteCommands:
     binByteAndSpCommands.append([binCommand, spPerhapsCommands])
 
 
-
 #находим для каждого операнда свое значение
 binByteAndSpMasksCommandsOperands = []
 for indexBinByteAndSpCommands in binByteAndSpCommands:
@@ -120,7 +117,7 @@ for indexBinByteAndSpCommands in binByteAndSpCommands:
                 operand[key] = int(operand[key], 2)
 
             if key == 'K' or key == 'k' or key == 'P' or key == 'q':
-                if indexSpCommands[1] == '*jmp' or indexSpCommands[1] == '*call':
+                if indexSpCommands[1] == 'jmp' or indexSpCommands[1] == 'call':
                     operand[key] = int(operand[key] + '0', 2)
                     operand[key] = hex(operand[key])
                 else:
@@ -131,23 +128,24 @@ for indexBinByteAndSpCommands in binByteAndSpCommands:
     binByteAndSpMasksCommandsOperands.append([indexBinByteAndSpCommands[0], spMaskCommandOperand])
 
 
-
-
 #обратно перевожу команды в Hex код
 for i in range(len(binByteAndSpMasksCommandsOperands)):
     binByteAndSpMasksCommandsOperands[i][0] = hex(int(binByteAndSpMasksCommandsOperands[i][0], 2))[2::]
     if len(binByteAndSpMasksCommandsOperands[i][0]) == 4:
         binByteAndSpMasksCommandsOperands[i][0] = binByteAndSpMasksCommandsOperands[i][0][2:4] + binByteAndSpMasksCommandsOperands[i][0][0:2]
     if len(binByteAndSpMasksCommandsOperands[i][0]) == 8:
-        binByteAndSpMasksCommandsOperands[i][0] = binByteAndSpMasksCommandsOperands[i][0][2:4] + binByteAndSpMasksCommandsOperands[i][0][0:2] + binByteAndSpMasksCommandsOperands[i][0][6:8] + binByteAndSpMasksCommandsOperands[i][0][4:6]
+        binByteAndSpMasksCommandsOperands[i][0] = (binByteAndSpMasksCommandsOperands[i][0][2:4] +
+        binByteAndSpMasksCommandsOperands[i][0][0:2] + binByteAndSpMasksCommandsOperands[i][0][6:8] + binByteAndSpMasksCommandsOperands[i][0][4:6])
+
 
 #Вывод ответа
-with open('Answer2.txt', "w") as file:
+with open('Answer.txt', "w") as file:
     count = '0x0'
     for indexCommand in range(len(binByteAndSpMasksCommandsOperands)):
         file.write("\n")
         if len(binByteAndSpMasksCommandsOperands[indexCommand][1]) == 1:
-            file.write(f'{count}: {binByteAndSpMasksCommandsOperands[indexCommand][0]} {binByteAndSpMasksCommandsOperands[indexCommand][1][0][1]} {binByteAndSpMasksCommandsOperands[indexCommand][1][0][2]}')
+            file.write(f'{count}: {binByteAndSpMasksCommandsOperands[indexCommand][0]} '
+                       f'{binByteAndSpMasksCommandsOperands[indexCommand][1][0][1]} {binByteAndSpMasksCommandsOperands[indexCommand][1][0][2]}')
         else:
             file.write(f'{count}: {binByteAndSpMasksCommandsOperands[indexCommand][0]}')
             for indexMasksCommand in binByteAndSpMasksCommandsOperands[indexCommand][1]:
@@ -157,6 +155,3 @@ with open('Answer2.txt', "w") as file:
             count = hex(int(count[2::], 16) + 2)
         elif len(binByteAndSpMasksCommandsOperands[indexCommand][0]) == 8:
             count = hex(int(count[2::], 16) + 4)
-
-
-
